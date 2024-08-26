@@ -2,7 +2,9 @@ package com.rafalopez.practico_1;
 
 import androidx.annotation.NonNull;
 
-public class Palabra {
+import java.io.Serializable;
+
+public class Palabra implements Serializable {
     private String eng;
     private String esp;
     private String img;
@@ -15,7 +17,7 @@ public class Palabra {
     public Palabra(String eng, String esp) {
         this.eng = eng;
         this.esp = esp;
-        this.img = "no_image.png";
+        this.img = "no_image";
     }
 
     public String getEng() {
