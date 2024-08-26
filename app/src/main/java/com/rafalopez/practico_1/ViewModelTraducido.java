@@ -14,7 +14,8 @@ import androidx.lifecycle.MutableLiveData;
 
 public class ViewModelTraducido extends AndroidViewModel {
     private MutableLiveData<Palabra> mutableMsg;
-    private  MutableLiveData<Bitmap> mutableImg;
+    //private  MutableLiveData<Bitmap> mutableImg;
+    private  MutableLiveData<Integer> mutableImg;
     public ViewModelTraducido(@NonNull Application application) {
         super(application);
     }
@@ -26,7 +27,8 @@ public class ViewModelTraducido extends AndroidViewModel {
         }
         return mutableMsg;
     }
-    public MutableLiveData<Bitmap> getMutableImg() {
+    //public MutableLiveData<Bitmap> getMutableImg() {
+    public MutableLiveData<Integer> getMutableImg() {
         if (mutableImg==null) {
             mutableImg = new MutableLiveData<>();
         }
@@ -42,23 +44,25 @@ public class ViewModelTraducido extends AndroidViewModel {
             Log.d("salida","TRADUCIDO" + palabra.toString());
         }
     }
-    public void setImg(Intent intent, Context context){
-        Log.d("salida","TRADUCIDO contexto: " + context.getPackageName());
+    public void setImg(Intent intent){
+        Log.d("salida","TRADUCIDO contexto: " + getApplication().getPackageName());
         Bundle bundle = new Bundle();
         bundle = intent.getBundleExtra("palabra");
         if(bundle != null){
             Palabra palabra = (Palabra) bundle.getSerializable("palabra");
 
-            int imgId = context.getResources().getIdentifier(palabra.getImg(), "drawable",  context.getPackageName());
+            int imgId = getApplication().getResources().getIdentifier(palabra.getImg(), "drawable",  getApplication().getPackageName());
             //int imgId = context.getResources().getIdentifier(palabra.getImg(), "drawable",mundo
             // context.getPackageName());
             if(imgId == 0){
                 Log.d("salida","No se encontro imagen");
                 return;
             }
-            Bitmap img = BitmapFactory.decodeResource(context.getResources(), imgId);
-            mutableImg.setValue(img);
+//            Bitmap img = BitmapFactory.decodeResource(getApplication().getResources(), imgId);
+   //         mutableImg.setValue(img);
+            mutableImg.setValue(imgId);
             Log.d("salida","IMAGEN: " + imgId);
+
        }
 
     }

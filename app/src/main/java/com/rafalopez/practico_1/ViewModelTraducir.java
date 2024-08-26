@@ -46,8 +46,6 @@ public class ViewModelTraducir extends AndroidViewModel {
         Palabra p9 = new Palabra("Strawberry", "Frutilla", "frutilla");
         Palabra p10 = new Palabra("Hen", "Gallina", "gallina");
         Palabra p11 = new Palabra("Apple", "Manzana", "manzana");
-
-
         addPalabra(p1);
         addPalabra(p2);
         addPalabra(p3);
@@ -61,7 +59,7 @@ public class ViewModelTraducir extends AndroidViewModel {
         addPalabra(p11);
     }
 
-    public void addPalabra(Palabra palabra) {
+    private void addPalabra(Palabra palabra) { // importnat private
         boolean esUnica = engSet.add(palabra.getEng()) &&  espSet.add(palabra.getEsp()) ;
         if (esUnica) {
             imgSet.add(palabra.getImg());

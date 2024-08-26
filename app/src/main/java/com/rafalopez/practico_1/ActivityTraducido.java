@@ -26,10 +26,16 @@ public class ActivityTraducido extends AppCompatActivity {
         binding = ActivityTraducidoBinding.inflate(getLayoutInflater());
         viewModelTraducido =ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ViewModelTraducido.class);
         intent = getIntent();
-        viewModelTraducido.getMutableImg().observe(this, new Observer<Bitmap>(){
+//        viewModelTraducido.getMutableImg().observe(this, new Observer<Bitmap>(){
+//            @Override
+//            public void onChanged(Bitmap img) {
+//                binding.imgTraducido.setImageBitmap(img);
+//            }
+//        });
+        viewModelTraducido.getMutableImg().observe(this, new Observer<Integer>() {
             @Override
-            public void onChanged(Bitmap img) {
-                binding.imgTraducido.setImageBitmap(img);
+            public void onChanged(Integer img) {
+                binding.imgTraducido.setImageResource(img);
             }
         });
         viewModelTraducido.getMutableMsg().observe(this, new Observer<Palabra>() {
@@ -39,7 +45,7 @@ public class ActivityTraducido extends AppCompatActivity {
             }
         });
         viewModelTraducido.setPalabra(intent);
-        viewModelTraducido.setImg(intent, this);
+        viewModelTraducido.setImg(intent); // NO MANDAR CONTEXTO
         // Evento click del botón de home
         binding.btnHome.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityTraducido.this, ActivityTraducir.class);
