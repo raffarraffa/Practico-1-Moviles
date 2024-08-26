@@ -22,11 +22,8 @@ public class ActivityTraducir extends AppCompatActivity {
         binding = ActivityTraducirBinding.inflate(getLayoutInflater());
         //*getRoot()*: se utiliza para obtener la vista raíz del diseño inflado
         setContentView(binding.getRoot());
-
         // Separo porque no la entiendo toda junta
-        // viewModelTraducir =                ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ViewModelTraducir.class); // leer pa entender
-
-        // instancio del factory para AndroidViewModel
+        // viewModelTraducir =  ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ViewModelTraducir.class);        // instancio del factory para AndroidViewModel
         ViewModelProvider.AndroidViewModelFactory factory = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication());
         // instancio del ViewModel utilizando el factory
         viewModelTraducir = factory.create(ViewModelTraducir.class);
@@ -37,12 +34,11 @@ public class ActivityTraducir extends AppCompatActivity {
                 binding.msgTraducir.setText(msg);
             }
         });
-
         // evento click del botón de traducir
         binding.btnTraslate.setOnClickListener(v -> {
             Log.d("salida", "asdads ");
             String inputTextoEsp = binding.inputEsp.getText().toString();
-        //viewModelTraducir.verPalabras(); // solo para mostrar laa spalbras en el logd
+         //viewModelTraducir.verPalabras(); // solo para mostrar laa spalbras en el logd
          // envio la plabr al viewModel
          binding.inputEsp.setText("");
          viewModelTraducir.traducirPalabra(inputTextoEsp);

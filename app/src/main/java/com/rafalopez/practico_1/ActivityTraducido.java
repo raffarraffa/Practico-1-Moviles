@@ -20,8 +20,6 @@ public class ActivityTraducido extends AppCompatActivity {
     private ActivityTraducidoBinding binding;
     private ViewModelTraducido viewModelTraducido;
     private Intent intent;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,23 +37,14 @@ public class ActivityTraducido extends AppCompatActivity {
             public void onChanged(Palabra msg) {
                 binding.msgTraduccion.setText(msg.getEng());
             }
-
         });
         viewModelTraducido.setPalabra(intent);
         viewModelTraducido.setImg(intent, this);
-
-
         // Evento click del botón de home
         binding.btnHome.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityTraducido.this, ActivityTraducir.class);
             startActivity(intent);
         });
-
-
-
-
         setContentView(binding.getRoot());
-
-
     }
 }
